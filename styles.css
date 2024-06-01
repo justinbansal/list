@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  align-items: flex-start;
+}
+
+aside {
+  padding: 20px;
+  margin-right: 100px;
+}
+
+main {
+  position: sticky;
+  top: 20px;
+}
