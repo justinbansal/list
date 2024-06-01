@@ -1,6 +1,7 @@
 const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-bar');
 const resultsContainer = document.querySelector('[data-search-results]');
+const watchListDrawer = document.querySelector('[data-watchlist-drawer]');
 
 let watchList = [];
 
@@ -62,6 +63,17 @@ function updateResultsContainer(results) {
   resultsContainer.append(fragment);
 
 }
+
+watchListDrawer.addEventListener('click', (e) => {
+  const drawer = e.target;
+
+  if (drawer.classList.contains('active')) {
+    drawer.classList.remove('active');
+    return;
+  }
+
+  drawer.classList.add('active');
+})
 
 async function searchMovieDatabase(movie) {
   console.log(movie);
