@@ -2,6 +2,8 @@ const searchForm = document.getElementById('search-form');
 const searchInput = document.getElementById('search-bar');
 const resultsContainer = document.querySelector('[data-search-results]');
 
+let watchList = [];
+
 let query;
 
 // Placeholder content for testing
@@ -42,10 +44,18 @@ function updateResultsContainer(results) {
     title.textContent = result.title;
     const posterImg = document.createElement('img');
     posterImg.classList.add('poster');
+    const addBtn = document.createElement('button');
+    addBtn.classList.add('add-btn');
+    const span = document.createElement('span');
+    addBtn.append(span);
+    addBtn.addEventListener('click', () => {
+      watchList.push(result);
+    })
     // Removed baseUrl while testing with placeholder content
     posterImg.src = `${result.poster_path}`;
     div.append(title);
     div.append(posterImg);
+    div.append(addBtn);
     fragment.append(div);
   }
 
