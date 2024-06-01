@@ -33,6 +33,30 @@ searchForm.addEventListener('submit', async (e) => {
   }
 });
 
+function updateWatchListDrawer() {
+  const fragment = new DocumentFragment();
+
+  for (const movie of watchList) {
+    const div = document.createElement('div');
+    div.classList.add('movie');
+    const title = document.createElement('h3');
+    title.classList.add('title');
+    title.textContent = movie.title;
+    const posterImg = document.createElement('img');
+    posterImg.classList.add('poster');
+    posterImg.src = `${movie.poster_path}`;
+    div.append(title);
+    div.append(posterImg);
+    fragment.append(div);
+  }
+
+  watchListDrawer.innerHTML = '';
+  watchListDrawer.append(fragment);
+  if (!watchListDrawer.classList.contains('active')) {
+    watchListDrawer.classList.add('active');
+  }
+}
+
 function updateResultsContainer(results) {
   const fragment = new DocumentFragment();
   const baseUrl = `https://image.tmdb.org/t/p/w500/`;
@@ -51,6 +75,7 @@ function updateResultsContainer(results) {
     addBtn.append(span);
     addBtn.addEventListener('click', () => {
       watchList.push(result);
+      updateWatchListDrawer();
     })
     // Removed baseUrl while testing with placeholder content
     posterImg.src = `${result.poster_path}`;

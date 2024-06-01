@@ -48,6 +48,7 @@ main {
   background-color: antiquewhite;
   transform: translateX(90%);
   transition: 1.0s;
+  cursor: pointer;
 }
 
 .watchlist-drawer.active {
