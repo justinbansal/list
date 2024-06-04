@@ -39,6 +39,11 @@ main {
   transition: 0.4s;
 }
 
+.added {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
 .watchlist-drawer {
   position: fixed;
   right: 0;
@@ -49,6 +54,7 @@ main {
   transform: translateX(90%);
   transition: 1.0s;
   cursor: pointer;
+  overflow-y: scroll;
 }
 
 .watchlist-drawer.active {

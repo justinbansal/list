@@ -10,16 +10,32 @@ let query;
 // Placeholder content for testing
 
 const results = [
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
-  { title: 'Bad Boys', poster_path: 'https://placehold.co/400'},
+  { title: 'Bad Boys', poster_path: 'https://placehold.co/400', id: 9737},
+  { title: 'Bad Boys 2', poster_path: 'https://placehold.co/400', id: 9738},
+  { title: 'Bad Boys for life', poster_path: 'https://placehold.co/400', id: 9739},
+  { title: 'Bad Boys ride or die', poster_path: 'https://placehold.co/400', id: 9740},
+  { title: 'Bad Boys 5', poster_path: 'https://placehold.co/400', id: 9741},
+  { title: 'Bad Boys 6', poster_path: 'https://placehold.co/400', id: 9742},
+  { title: 'Bad Boys 7', poster_path: 'https://placehold.co/400', id: 9743},
 ]
 
 updateResultsContainer(results);
+updateAddedItems();
+
+// TODO:
+// Look for items in watch list and add state for 'already added' to list
+// Let's lower the opacity and make cursor not-allowed on hover
+// Add disabled attr to add button
+// find elements where id matches id in watchList array
+// add 'added' class
+function updateAddedItems() {
+  for (const movie of results) {
+    if (watchList.indexOf(movie.id) === -1) {
+      movie.added = true;
+      return;
+    }
+  }
+}
 
 searchForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -39,6 +55,7 @@ function updateWatchListDrawer() {
   for (const movie of watchList) {
     const div = document.createElement('div');
     div.classList.add('movie');
+    div.dataset.movieId = movie.id;
     const title = document.createElement('h3');
     title.classList.add('title');
     title.textContent = movie.title;
@@ -64,6 +81,7 @@ function updateResultsContainer(results) {
   for (const result of results) {
     const div = document.createElement('div');
     div.classList.add('result');
+    div.dataset.movieId = result.id;
     const title = document.createElement('h3');
     title.classList.add('title');
     title.textContent = result.title;
